@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .assistant-container {
+            margin-top: 50px;
+        }
+
+        #assistant-output {
+            margin: 20px auto;
+            padding: 10px;
+            width: 50%;
+            height: 150px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            overflow-y: auto;
+        }
+
+        input, button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="assistant-container">
+        <h1>Virtual Assistant</h1>
+        <div id="assistant-output"></div>
+        <input type="text" id="user-input" placeholder="Type your query here...">
+        <button id="send-btn">Send</button>
+    </div>
+    <script>
+        document.getElementById("send-btn").addEventListener("click", function() {
+            const userInput = document.getElementById("user-input").value.trim();
+            const assistantOutput = document.getElementById("assistant-output");
+
+            let response;
+
+            if (userInput === "") {
+                response = "Please type something!";
+            } else if (userInput.includes("your name")) {
+                response = "I am your virtual assistant!";
+            } else if (userInput.includes("time")) {
+                const currentTime = new Date().toLocaleTimeString();
+                response = `The current time is ${currentTime}.`;
+            } else {
+                response = "I'm sorry, I don't know how to respond to that.";
+            }
+
+            const newMessage = document.createElement("p");
+            newMessage.textContent = response;
+            assistantOutput.appendChild(newMessage);
+
+            document.getElementById("user-input").value = ""; // Clear input field
+        });
+    </script>
+</body>
+</html>
